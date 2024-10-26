@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+  body {
+    background-color: #170e03; /* Dark background color */
+    background-image: 
+        url('https://pngimg.com/d/pizza_PNG7149.png'), /* Image as background */
+        radial-gradient(circle, #2f2b27 10%, transparent 10%),
+        radial-gradient(circle, transparent 10%, #6a655e 10%, #4d3516 20%); /* Gradients */
+    background-position: center, 0 0, 50px 50px; /* Position the image and gradients */
+    background-size: cover, 100px 100px, 100px 100px; /* Size adjustments */
+    background-repeat: no-repeat; /* Prevent image repeat */
+}
+
+  

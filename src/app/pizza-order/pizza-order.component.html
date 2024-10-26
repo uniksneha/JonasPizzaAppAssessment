@@ -1,0 +1,71 @@
+
+
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4 pizza-header" style=>Pizza Order Entry System</h2>
+  <div class="row">
+      <div *ngFor="let size of pizzaSizes; let i = index" class="col-md-3">
+          <div class="card mb-4">
+              <div class="card-fill"></div> 
+              <div class="card-body text-center">
+                  <input class="radio-size" type="radio" name="size" [id]="'size-' + i">
+                  <label class="for-radio-size" [for]="'size-' + i">
+                      <span class="size-label" style="color: white; font-weight: bold; font-size:x-large;">{{ size.name }} (${{ size.price }})</span>
+                  </label>
+                  <input class="form-control mb-3" type="number" [(ngModel)]="sizesQty[size.name]" 
+                         (change)="updatePizzaOrder(size)" min="0" placeholder="Qty">
+
+                  <h5 style=" color: white; font-weight: bold;">Select Veg Toppings:</h5>
+                  <div *ngFor="let topping of getVegToppings(size.name)">
+                      <label class="toggle-button">
+                          <input type="checkbox" [id]="topping.name + '-' + size.name" 
+                                 [(ngModel)]="topping.selected" 
+                                 (change)="updatePizzaOrder(size)">
+                          <span class="slider"></span>
+                          {{ topping.name }} (${{ topping.price.toFixed(2) }})
+                      </label>
+                  </div>
+
+                  <h5 style="color: white; font-weight: bold;">Select Non-Veg Toppings:</h5>
+                  <div *ngFor="let topping of getNonVegToppings(size.name)">
+                      <label class="toggle-button">
+                          <input type="checkbox" [id]="topping.name + '-' + size.name" 
+                                 [(ngModel)]="topping.selected" 
+                                 (change)="updatePizzaOrder(size)">
+                          <span class="slider"></span>
+                          {{ topping.name }} (${{ topping.price.toFixed(2) }})
+                      </label>
+                  </div>
+
+                  <div class="mt-3">
+                      <h5 style="color: white; font-weight: bold;">Total for {{ size.name }}: ${{ calculateSizePrice(size.name) | number: '1.2-2' }}</h5>
+                      <div class="offers">
+                          <p style="color: white" *ngIf="sizesQty[size.name] > 0">
+                              Offers for {{ size.name }}:
+                          </p>
+                          <p style="color: white" *ngIf="size.name === 'Medium' && sizesQty['Medium'] === 1 && countSelectedToppings('Medium') >= 2">
+                              Offer: 1 Medium Pizza with 2 toppings = $5
+                          </p>
+                          <p style="color: white" *ngIf="size.name === 'Medium' && sizesQty['Medium'] >= 2 && countSelectedToppings('Medium') >= 4">
+                              Offer: 2 Medium Pizzas with 4 toppings each = $9
+                          </p>
+                          <p style="color: white" *ngIf="size.name === 'Large' && sizesQty['Large'] === 1 && countSpecialToppings('Large') >= 4">
+                              Offer: 1 Large Pizza with 4 toppings = 50% discount!
+                          </p>
+                          <p style="color: white" *ngIf="sizesQty[size.name] === 0">
+                              No offers available.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 mt-4">
+          <div class="grand-total-strip">
+              <h4 class="grand-total">Grand Total Price: ${{ grandTotalPrice.toFixed(2) }}</h4>
+          </div>
+      </div>
+  </div>
+</div>

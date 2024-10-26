@@ -1,0 +1,134 @@
+
+:root {
+	--white: #ffffff;
+	--light: #f0eff3;
+	--black: #000000;
+	--dark-blue: #1f2029;
+	--dark-light: #353746;
+	--red: #da2c4d;
+	--yellow: #f8ab37;
+	--grey: #ecedf3;
+}
+
+body {
+    background-color: #170e03;
+    background-image: radial-gradient(circle, #2f2b27 10%, transparent 10%), radial-gradient(circle, transparent 10%, #6a655e 10%, #4d3516 20%);
+    background-position: 0 0, 50px 50px;
+    background-size: 100px 100px;
+    color: white; /* Default text color */
+    font-family: 'Arial', sans-serif; /* Default font */
+}
+
+.pizza-header {
+    font-weight: bold; /* Bold headline */
+    font-size: 2.5rem; /* Different font size */
+    font-family: 'Courier New', Courier, monospace; /* Different font family */
+}
+
+.card {
+    position: relative;
+    overflow: hidden; /* Hide overflow to prevent content from showing during animation */
+    border-radius: 8px; /* Optional: rounded corners */
+    background-color: #1a1a1a; /* Matte black background */
+    transition: transform 0.3s ease; /* Smooth scale effect */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly scale up the card on hover */
+}
+
+.card-body {
+    position: relative;
+    z-index: 1; /* Ensure content stays above the background fill */
+}
+
+.card-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(298deg, #da2c4d, #f8ab37); 
+    /* background-image: linear-gradient(298deg, var(--red), var(--yellow)); */
+    transform: translateY(-100%); /* Start hidden below the card */
+    transition: transform 0.3s ease; /* Smooth fill animation */
+    z-index: 0; /* Behind the content */
+}
+
+.card:hover .card-fill {
+    transform: translateY(0); /* Slide up fill on hover */
+}
+
+.toggle-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: white; /* Ensure toggle button text is white */
+}
+
+.toggle-button input {
+    display: none; /* Hide the default checkbox */
+}
+
+.slider {
+    position: relative;
+    width: 30px;
+    height: 15px;
+    background-color: #ccc;
+    border-radius: 15px;
+    margin-right: 10px;
+    transition: background-color 0.2s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+input:checked + .slider {
+    background-color: #0ef165; /* Color when checked */
+}
+
+input:checked + .slider:before {
+    transform: translateX(15px); /* Move the toggle */
+}
+
+.grand-total {
+    font-weight: bold; /* Bold grand total text */
+    font-size: 1.5rem; /* Different font size */
+    margin-top: 20px; /* Space above grand total */
+}
+.radio-size {
+    display: none; /* Hide the default radio button */
+}
+.grand-total-strip {
+    background: linear-gradient(298deg, #da2c4d, #f8ab37);
+    padding: 15px; /* Some padding for spacing */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center the text */
+    margin-top: 2px; /* Space above */
+}
+
+.grand-total {
+    color: white; 
+    font-weight: bold; 
+    font-family: 'Arial', sans-serif; /* Different font, can change as needed */
+}
+
+.pizza-header{
+    color:(298deg, #da2c4d, #f8ab37); 
+    font-weight: bold; 
+    font-family:Bernard MT Condensed; 
+    letter-spacing: 10px; 
+    font-size:60px;
+font-stretch: expanded;
+}
+
